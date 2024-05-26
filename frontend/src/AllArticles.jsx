@@ -8,6 +8,7 @@ import axios from 'axios';
 
 function AllArticles() {
   const [products, setProducts] = useState([]);
+  const [users, setUsers] =useState([]);
 
   useEffect(() => {
     
@@ -20,7 +21,16 @@ function AllArticles() {
         console.error('Erreur lors de la récupération des produits:', error); 
       }
     };
-
+    const fetchUSers = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/all/users/');
+        setUsers(response.data); // Je remplis ici mon tableau avec les données récupérer sur la routes get 
+      } catch (error) {
+        // Si j'ai pas pu récupérer mes donné j'affiche ce message d'erreur
+        console.error('Erreur lors de la récupération des produits:', error); 
+      }
+    }
+    fetchUSers(); // Ici j'ai crée une fonction pour fecth tous les users.
     fetchProducts(); // Ici j'ai encore travaillé différement des autre composant pour montrer encore une autre manière de faire:
     // Je crée une fonction Fetch dans useEffect et je vais l'appeler simplement
   }, []); 
@@ -50,7 +60,12 @@ function AllArticles() {
         {products.map(product => (
           <li key={product.id}>
             <h2>{product.titre}</h2>
-            <p>{product.texte}</p>
+            {users
+            .filter(user => user.id === product.user)
+            .map(user => (
+              <p key={user.id}>{user.username}</p>
+            )) 
+            }
             <button onClick={()=> Delete(product.id)}>Supprimer</button>
           </li>
         ))}

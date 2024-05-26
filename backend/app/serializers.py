@@ -18,3 +18,13 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = ['id', 'titre', 'text', 'date', 'user']
         read_only_fields = ['user']
+
+# J'ai finalement ajouté un serializer User, pour donner une méthode alternative.
+# donc je vais crée une view qui envois tous mes user
+# le but est de permettre de fetch chaque article et de fetch également chaque user. 
+# Ensuite avec une comparaison, je pourrais afficher le nom du user correspondant a l'article 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+        

@@ -71,6 +71,16 @@ def get_utilisateur(request):
     } # je crée un objet mon user que je vais envoyé en réponse sur cette route, le front pourra avoir accès a username et id (j'aurais pu afficher plus d'élément si je voulais)
     return JsonResponse({'user': mon_user})
 
+
+# Ici je vais faire une views alternative pour récupérer mes users. Ici c'est simplifié par mon serializer qui va généré les données de la db en json
+@api_view(['GET'])
+def all_users(request):
+    allusers= User.objects.all() # toutes les entrée de user dans la db
+    user_serial= UserSerializer(allusers, many=True) #ici on transforme allusers en tableau json 
+    return Response(user_serial.data)#je vais utiliser les données pour affiché le nom de chaque user a coté de son article
+    
+
+
 @api_view(['POST'])
 def deco(request):
     #ici la fonction logout se charge de faire tout le travail de déconnexion
