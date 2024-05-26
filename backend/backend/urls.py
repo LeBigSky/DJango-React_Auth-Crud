@@ -12,4 +12,5 @@ urlpatterns = [
     path( 'create/article/', create_article),
     path( 'all/article/', all_articles),
     path('logout/', deco),
+    path('delete/<int:id>', delete_article),
 ]

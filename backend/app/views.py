@@ -100,6 +100,6 @@ def all_articles(request):
 
 @api_view(['DELETE'])
 def delete_article(request, id):
-    article = Article.objetcs.get(id=id)
+    article = Article.objects.get(id=id)
     article.delete()
     return JsonResponse({'status': 'success', 'message': 'article supprimé'})

@@ -26,6 +26,22 @@ function AllArticles() {
   }, []); 
   // Le tableau vide en deuxième argument indique que cette fonction useEffect ne s'exécutera qu'une seule fois après le premier rendu de mon coposant
 
+  const Delete= async (id) => {
+    const token = localStorage.getItem('access_token');
+
+      try {
+        await axios.delete(`http://127.0.0.1:8000/delete/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setProducts(products.filter(tralala => tralala.id !== id))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+  
   return (
     <div>
       <h1>Liste des Produits</h1>
@@ -35,6 +51,7 @@ function AllArticles() {
           <li key={product.id}>
             <h2>{product.titre}</h2>
             <p>{product.texte}</p>
+            <button onClick={()=> Delete(product.id)}>Supprimer</button>
           </li>
         ))}
       </ul>
