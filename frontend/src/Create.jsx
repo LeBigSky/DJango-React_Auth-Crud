@@ -14,7 +14,8 @@ const nav = useNavigate()
 // Mon ustestate de l'étape 2
     const [formdata, setFormdata] = useState({
         username: "",
-        password : ""
+        password : "",
+        email: ""
     })
 
     // Ma focntion qui m epermet de récupérer les données de chque input et les stocker dans mon UseState
@@ -47,6 +48,8 @@ console.log(formdata)
             <input type="text" name="username" value={formdata.username} onChange={ (e)=>{handlechange(e)}} />
             <label htmlFor="password">Password</label>
             <input type="password" name="password" value={formdata.password} onChange={ (e)=>{handlechange(e)}}/>
+            <label htmlFor="email">email</label>
+            <input type="email" name="email" value={formdata.email} onChange={ (e)=>{handlechange(e)}}/>
             <button type submit>Inscrire-se de dans la db</button>
         </form>
         

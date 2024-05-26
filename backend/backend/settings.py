@@ -149,6 +149,14 @@ SIMPLE_JWT = {
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
+
+
+#mail  => Les copié les infos de votre compte Mailtrap/intégration/python/django
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'c11438bbc4df8b'
+EMAIL_HOST_PASSWORD = '4f682751b4fe10'
+EMAIL_PORT = '2525'
+
 # Credentials
 # Gary Axen & Family...
 

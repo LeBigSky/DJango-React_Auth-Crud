@@ -11,6 +11,7 @@ from .serializers import *
 from rest_framework import status #connaitre le status de l'erreur en cas d'erreur
 from rest_framework.response import Response # Envois une répons HTTP (ici on utilise des réponse Http au lieu de render une page)
 from rest_framework.permissions import IsAuthenticated # Je vais pouvoir vérifier si un user est connecté et avoir accès a ces données
+from django.core.mail import send_mail # Je vais pouvoir envoyer des mails
 
 # Create your views here.
 
@@ -20,15 +21,17 @@ def inscription(request):
     data = json.loads(request.body) # => les élément envoyé dans la requêtes post depuis le front, sont récupérer dans data
     username = data.get('username') # data.username, la données dont le clé = username
     password = data.get('password') # data.username, la données dont la clé = password
+    email = data.get('email') # data.email, la données dont la clé = email => Suite a cet exo j'ajoute email pour pouvoir envoyer un mail au user
 
     #Je vais vérifier si le user existe déjà, ça serait bêta d'enregistrer 2 fois le même username...
     if User.objects.filter(username=username).exists():
         return JsonResponse({'status': 'y a une erreur', 'message': 'Ce User existe déjà'}) # => Si le username existe
     
     # sinon
-    new_user= User(username=username, password=make_password(password)) 
+    new_user= User(username=username, password=make_password(password), email=email) 
     # je crée un nouveau user, je précise que le mdp est dans la fonction "make_password" qui va hacher mon mdp
     new_user.save() # je sauvegarde ces données
+    send_mail('Le sujet', 'le contenu du mail', 'from@mail.com', [email])
     return JsonResponse({'status': 'success', 'message': 'Le user a été crée, Bravo !!!'})
 
 
