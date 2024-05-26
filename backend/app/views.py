@@ -97,3 +97,9 @@ def all_articles(request):
     # Je serialize mes article pour les envoyé en Json
     article_serializer= ArticleSerializer(articles, many=True)
     return Response(article_serializer.data)# j'envois mes articles 
+
+@api_view(['DELETE'])
+def delete_article(request, id):
+    article = Article.objetcs.get(id=id)
+    article.delete()
+    return JsonResponse({'status': 'success', 'message': 'article supprimé'})
