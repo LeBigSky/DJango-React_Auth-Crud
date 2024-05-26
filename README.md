@@ -11,11 +11,11 @@ Currently, two official plugins are available:
 ## AUTHENTIFICATION - CREATION UNIQUEMENT SI ON EST CONNECTED
 
 # RUN THE Back PROJECT => Crée un env a la racine, l'activer puis pip install -r requirements.txt
-# RUN THE front PROJECT => dans le dosser frontend: npm i
+# RUN THE front PROJECT => dans le dossier frontend: npm i
 
 Dans cet exos corrigé, j'explique en détails les étapes en front et en back
 
-Pour suivre cette corection dans l'ordre:
+Pour suivre cette correction dans l'ordre:
 
 Commencer par le back =>
 
