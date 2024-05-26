@@ -8,14 +8,14 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh -->
 
 # DJANGO - REACT 
-## AUTHENTIFICATION - CREATION UNQIUEMENT SI ON EST CONNECTED
+## AUTHENTIFICATION - CREATION UNIQUEMENT SI ON EST CONNECTED
 
 # RUN THE Back PROJECT => Crée un env a la racine, l'activer puis pip install -r requirements.txt
-# RUN THE front PROJECT => dans le dosser frontend: npm i
+# RUN THE front PROJECT => dans le dossier frontend: npm i
 
 Dans cet exos corrigé, j'explique en détails les étapes en front et en back
 
-Pour suivre cette corection dans l'ordre:
+Pour suivre cette correction dans l'ordre:
 
 Commencer par le back =>
 
