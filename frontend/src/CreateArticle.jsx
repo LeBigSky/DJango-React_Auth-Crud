@@ -27,7 +27,8 @@ const nav = useNavigate()
     e.preventDefault();
     const token = localStorage.getItem('access_token');
     if (!token) {
-      setMessage('Vous devez être connecté');
+      setMessage('Vous devez être connecté'); // Ici je vérifie déjà si on a bien le token.
+                                              // Pour tester le middleware, il vaut mieux mettre ce if en commentaire
       return;
     }
 // Ici je vais poster sur ma route create article => j'envois cette fois 3 éléments distinct qui composeront mon article
@@ -42,14 +43,17 @@ const nav = useNavigate()
           }
         }
       );
-      // si l'article a été ajouté on affiche un message et on est redirigé
-      setMessage('Un nouvel article a été crée');
-      nav("/all/articles")
-
+        setMessage('Un nouvel article a été crée');
+        nav("/all/articles")
+        console.log(response.data)
     }
-      // si il y a un soucis a cette étape, c'est sans doute une erreur du backend ou il faut déco/reco 
+      // si il y a un soucis a cette étape, c'est très probablement le middlware qui refuse la requetes
     catch (error) {
-      setMessage('Une erreur a eu lieu... Essayer de vous déco/reco si ça marche toujours pas => Go check backend');
+      console.log(error.response.data.status)
+      if(error.response.data.status === "invalid"){ // Ici je vérifie si l'erreur est bien le refus de mon middleware voir .app/middleware Ligne: 26
+        setMessage("Vous n'avez pas le droit de poster des article sans être inscrit et/ou connecté");
+
+      }
     }
   };
 
